@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/base/formViewBase.xhtml">
+
+    <ui:define name="formViewMenubar">
+        <ui:include src="/base/menubars/genericMenubar.xhtml">
+            <ui:param name="menuItemBean" value="#{userFormView}"/>
+            <ui:param name="toUpdate" value=":contentMenubarForm:#{userFormView.viewIdPrefix}MenuId :contentForm:addUserId"/>
+            <ui:param name="toProcess" value="@this :contentForm:addUserId"/>
+        </ui:include>
+    </ui:define>
+
+    <ui:define name="formViewContent">
+        <ui:include src="userDetails.xhtml">
+            <ui:param name="userListView" value="#{userFormView}"/>
+        </ui:include>
+    </ui:define>
+
+</ui:composition>

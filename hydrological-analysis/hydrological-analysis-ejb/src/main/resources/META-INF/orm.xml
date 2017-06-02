@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+
+    <!-- Comms Component -->
+    <!--<entity class="za.co.jobcreation.ejb.model.Address"/>-->
+    <entity class="za.co.jobcreation.ejb.model.AnnualTurnOver"/>
+    <entity class="za.co.jobcreation.ejb.model.IncomeCategory"/>
+    <entity class="za.co.jobcreation.ejb.model.IndustrySector"/>
+    <entity class="za.co.jobcreation.ejb.model.Jobs"/>
+    <entity class="za.co.jobcreation.ejb.model.Enterprise"/>
+    <entity class="za.co.jobcreation.ejb.model.Province"/>
+    <entity class="za.co.jobcreation.ejb.model.Role"/>
+    <entity class="za.co.jobcreation.ejb.model.User"/>
+    <entity class="za.co.jobcreation.ejb.model.Department"/>
+    <entity class="za.co.jobcreation.ejb.model.BbbeeRating"/>
+
+</entity-mappings>

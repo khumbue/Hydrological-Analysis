@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <module-name>jobCreation</module-name>
+
+    <context-param>
+        <description>This really should be in JNDI, but we are leaving it here for now.</description>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+        <param-value>2</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>resources.application</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.SUBMIT</param-name>
+        <param-value>partial</param-value>
+    </context-param>
+    
+
+    <welcome-file-list>
+        <welcome-file>/login.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <!--When a session expires no resources are available but the login page.
+        Use jQuery to display session timeout modal to user-->
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/login.xhtml</location>
+    </error-page>
+
+    <!--Fall back error page, when no other error page can catch the exception -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/exceptions/http500.xhtml</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/login.xhtml</location>
+    </error-page>
+
+    <!--The session timeout is now set in LoginView.java-->
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+    <!-- Roles -->
+    <security-role>
+        <description>An authenticated application user</description>
+        <role-name>Administrator</role-name>
+    </security-role>
+    <!-- Resource / Role Mapping -->
+    <security-constraint>
+        <display-name>Entire Application</display-name>
+        <web-resource-collection>
+            <web-resource-name>all_resources</web-resource-name>
+            <!-- Block all -->
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>For any role</description>
+            <role-name>Administrator</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Login Page</display-name>
+        <web-resource-collection>
+            <web-resource-name>login_resources</web-resource-name>
+            <!-- Allow login page post - for ajax programmatic Servlet login. -->
+            <url-pattern>/login.jsf</url-pattern>
+            <http-method>POST</http-method>
+            <!-- No auth constraint i.e. Allow -->
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Static Web Resources</display-name>
+        <web-resource-collection>
+            <web-resource-name>static_web_resources</web-resource-name>
+            <!-- Allow JSF resources i.e. web resources in path /resource/**/* -->
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+            <http-method>GET</http-method>
+            <!-- No auth contraint i.e. Allow -->
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Secured pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Secured collection</web-resource-name>
+            <description>Entire application secured by default</description>
+            <url-pattern>/</url-pattern>
+            <http-method>DELETE</http-method>
+            <http-method>GET</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Allowed resources</web-resource-name>
+            <url-pattern>/javax.faces.resource/*</url-pattern>
+        </web-resource-collection>
+        <!-- No Auth Constraint! -->
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsf</form-login-page>
+            <form-error-page>/login.jsf</form-error-page>
+        </form-login-config>
+    </login-config>
+</web-app>

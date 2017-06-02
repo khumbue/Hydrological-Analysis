@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+              version="2.1">
+
+    <navigation-rule>
+        <description>Navigation rule for the login page's login action.</description>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>loggedIn</from-outcome>
+            <if>#{request.isUserInRole('Administrator')}</if>
+            <to-view-id>/jobs/jobsListView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>Navigation rule for the logout link.</description>
+        <navigation-case>
+            <from-outcome>loggedOut</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>loggedIn</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>loggedIn?faces-redirect=true</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <validator>
+        <validator-id>effectiveDateValidator</validator-id>
+        <validator-class>za.co.jobcreation.web.web.utils.validator.EffectiveDateValidator</validator-class>
+    </validator>
+
+    <converter>
+        <display-name>Province Converter</display-name>
+        <converter-id>provinceConverter</converter-id>
+        <converter-class>za.co.jobcreation.web.web.base.converter.ProvinceConverter</converter-class>
+    </converter>
+
+    <converter>
+        <display-name>Role Converter</display-name>
+        <converter-id>roleConverter</converter-id>
+        <converter-class>za.co.jobcreation.web.web.base.converter.RoleConverter</converter-class>
+    </converter>
+    
+    <converter>
+        <display-name>Enterprise Converter</display-name>
+        <converter-id>enterpriseConverter</converter-id>
+        <converter-class>za.co.jobcreation.web.web.base.converter.EnterpriseConverter</converter-class>
+    </converter>
+
+    <converter>
+        <converter-for-class>java.lang.Enum</converter-for-class>
+        <converter-class>javax.faces.convert.EnumConverter</converter-class>
+    </converter>
+
+    <converter>
+        <converter-for-class>java.lang.Boolean</converter-for-class>
+        <converter-class>javax.faces.convert.BooleanConverter</converter-class>
+    </converter>
+
+</faces-config>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="template.xhtml">
+
+    <!--
+    Mod Author: khumbu
+    -->
+
+    <ui:param name="authenticationView" value="#{loginView}"/>
+
+    <ui:define name="style">
+        <h:outputStylesheet library="css" name="icons.css"/>
+    </ui:define>
+    <ui:define name="last">
+    </ui:define>
+
+    <ui:define name="metadata">
+        <f:metadata/>
+    </ui:define>
+
+    <ui:define name="script">
+        <h:outputScript library="js" name="wellnessFactor.js"/>
+
+        <div id="jhp"></div>
+        <ui:insert name="subscript"/>
+    </ui:define>
+
+
+    <ui:define name="title">#{labels.common.appTitle}</ui:define>
+
+    <ui:define name="menu">
+        <p:tree id="menuTree" value="#{menuView.root}" var="menuData" selection="#{menuView.selectedNode}"
+                selectionMode="single"
+                animate="true" style="width:99%;">
+            <p:ajax event="select" listener="#{menuView.onNodeSelect}"/>
+            <p:ajax event="expand" listener="#{menuView.onNodeExpand}"/>
+            <p:ajax event="collapse" listener="#{menuView.onNodeCollapse}"/>
+            <p:treeNode id="treeNode">
+                <h:outputText value="#{menuData.description}" id="lblNode"/>
+            </p:treeNode>
+        </p:tree>
+
+    </ui:define>
+   <!-- <ui:define name="generictoolbar">
+        <ui:include src="menubars/systemMenubar.xhtml"/>
+    </ui:define>   -->
+
+    <ui:define name="southInsert">
+        <h:graphicImage value="#{resource['image:user.png']}"/>
+    </ui:define>
+
+    <ui:define name="southLeftInsert">
+        <table>
+            <tr>
+                <td>
+                    <p:outputLabel value="#{genericState.applicationEnvironment}"/>
+                </td>
+                <td class="ajaxLoaderTd">
+                    <p:ajaxStatus id="ajaxStatus">
+                        <f:facet name="start">
+                            <p:graphicImage value="#{resource['image:loading.gif']}"/>
+                        </f:facet>
+                        <f:facet name="complete">
+                            <h:outputText value=""/>
+                        </f:facet>
+                    </p:ajaxStatus>
+                </td>
+            </tr>
+        </table>
+    </ui:define>
+
+    <ui:define name="leftLogoInsert">
+        <h:graphicImage value="#{resource['image:sampleLogo.jpg']}" style="max-height:90%; max-width:100%;"/>
+    </ui:define>
+
+    <ui:define name="middleLogoInsert">
+        <!--<h:graphicImage styleClass="middleLogoImage" value="#{resource['image:topHeader.png']}"/> -->
+    </ui:define>
+
+    <ui:define name="rightLogoInsert">
+        <!--<h:graphicImage value="#{resource['image:fnb_logo_58.png']}"/>-->
+    </ui:define>
+
+    <ui:define name="northSolidLineInsert">
+        <div class="wellnessBlueDiv"/>
+    </ui:define>
+
+
+</ui:composition>

@@ -1,0 +1,55 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:p="http://primefaces.org/ui">
+
+    <p:panel styleClass="ui-no-margin ui-no-padding">
+
+        <p:panel header="#{labels.user.formHeader}" style="width:100%"
+                 styleClass="ui-no-margin ui-no-padding borderlessGrid"/>
+
+        <p:panelGrid id="addUserId" cellspacing="0" cellpadding="0" style="width:100%"
+                     styleClass="ui-no-margin ui-no-padding borderlessGrid">
+            <p:row>
+                <p:column style="vertical-align: middle; width: 120px;">
+                    <p:outputLabel value="#{labels.user.name}"/>
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{userFormView.model.userName}"
+                                 disabled="#{!userFormView.model.addNewRecord}"
+                                 maxlength="20" style="width: 50%;"/>
+                </p:column>
+                <p:column style="vertical-align: middle; width: 120px;">
+                    <p:outputLabel value="#{labels.user.active}"/>
+                </p:column>
+                <p:column>
+                    <p:selectBooleanCheckbox value="#{userFormView.model.active}" style="width: 50%;"/>
+                </p:column>
+            </p:row>
+
+            <p:row>
+                <p:column style="vertical-align: middle; width: 120px;">
+                    <p:outputLabel value="#{labels.user.role}"/>
+                </p:column>
+                <p:column style="vertical-align: middle;">
+                    <p:selectOneMenu value="#{userFormView.model.role}"
+                                     style="width: 50%;">
+                        <f:selectItem itemLabel="#{labels.user.selectRole}" itemValue=""/>
+                        <f:selectItems value="#{userFormView.roles}" var="role" itemLabel="#{role.name}"
+                                       itemValue="#{role}"/>
+                        <f:converter converterId="roleConverter"/>
+                        <p:ajax/>
+                    </p:selectOneMenu>
+                </p:column>
+                <!--<p:column style="vertical-align: middle; width: 120px;">
+                    <p:outputLabel value="#{labels.user.password}"/>
+                </p:column>
+                <p:column>
+                    <p:inputText value="#{userFormView.model.password}"
+                                 maxlength="20" style="width: 50%;"/>
+                </p:column>-->
+            </p:row>
+
+        </p:panelGrid>
+    </p:panel>
+</ui:fragment>
