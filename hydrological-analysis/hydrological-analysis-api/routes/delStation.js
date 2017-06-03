@@ -9,7 +9,7 @@ var router = express.Router();
 
 
 //Stations API
-router.delete('/:col&:doc', function(req, res){
+router.get('/:col&:doc', function(req, res){
 //initialise col with request parm
   var col = req.params.col;
   var doc = req.params.doc;
@@ -27,28 +27,22 @@ router.delete('/:col&:doc', function(req, res){
   } else {
     // We are connected
     console.log('Connection established to', url);
-    console.log(col);
-    console.log(doc);
-
 
     // Get the documents collection
     var collection = db.collection(col);
 
     // Find all students
-    console.log("&&&&&&&&&");
-    //collection.deleteMany({$or:[{"Station_No":doc}, {"Peak_Date":parseInt(doc)}]}).toArray(function (err, result) {
-      collection.deleteOne({"Peak_Date":parseInt(doc)}),function (err, result) {
+    collection.deleteOne({$or:[{"Station_No":doc}, {"Peak_Date":parseInt(doc)}]}).then(function (err, result) {
       if (err) {
         res.send(err);
       } else if (result.length) {
-        res.send("Document deleted");
-        //res.json(result);
+        res.json(result);
       } else {
         res.send('No documents found');
       }
       //Close connection
       db.close();
-    };
+    });
   }
   });
 });

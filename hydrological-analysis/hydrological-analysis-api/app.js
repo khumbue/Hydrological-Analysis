@@ -14,8 +14,6 @@ app.use('/api/listStation/', stations);
 app.use('/api/stations/all/', allstations);
 app.use('/api/delStation/', delStation);
 
-console.log('Running on port 3000999...');
-
 app.get('/', function(req, res, next) {
   res.send("Please use API endpoints")
 });

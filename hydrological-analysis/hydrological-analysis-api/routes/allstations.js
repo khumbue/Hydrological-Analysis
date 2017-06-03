@@ -7,16 +7,6 @@ var mongodb = require('mongodb');
 
 var router = express.Router();
 
- /* GET home page. */
-// Defines the root route. router.get receives a path and a function
-// The req object represents the HTTP request and contains
-// the query string, parameters, body, header
-// The res object is the response Express sends when it receives
-// a request
-// render says to use the views/index.jade file for the layout
-// and to set the value for title to 'Express'
-
-
 
 //Stations API
 router.get('/:col', function(req, res){
