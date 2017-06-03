@@ -1,0 +1,16 @@
+{
+  "name": "hydra",
+  "version": "1.0.0",
+  "description": "Hydrological Analysis",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+    "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "mongodb": "*"
+  },
+  "author": "Tranquility Mahlangu",
+  "license": "GPL-3.0"
+}
