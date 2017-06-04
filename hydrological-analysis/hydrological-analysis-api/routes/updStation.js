@@ -18,7 +18,7 @@ router.get('/:col&:doc', function(req, res){
   var MongoClient = mongodb.MongoClient;
 
   // Define where the MongoDB server is
-  var url = 'mongodb://localhost:27017/HYDRA';
+  var url = 'mongodb://127.0.1.1:27017/HYDRA';
 
   // Connect to the server
   MongoClient.connect(url, function (err, db) {
