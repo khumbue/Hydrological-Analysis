@@ -9,7 +9,9 @@ var router = express.Router();
 
 
 //Stations API
-router.delete('/:col&:doc', function(req, res){
+//router.delete('/:col&:doc', function(req, res){
+  //tobefixed Delete function not detected//
+router.get('/:col&:doc', function(req, res){
 //initialise col with request parm
   var col = req.params.col;
   var doc = req.params.doc;
