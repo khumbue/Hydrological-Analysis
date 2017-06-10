@@ -2,7 +2,9 @@ package za.co.hydroanalysis.web.client;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
+
 import javax.ws.rs.core.MediaType;
+
 import com.sun.jersey.api.representation.Form;
 
 /**
@@ -10,20 +12,24 @@ import com.sun.jersey.api.representation.Form;
  */
 public class JerseyClient {
     private static final String baseUrl = "http://localhost:3000/api/listStation";
-    public static void main(String[ ] args) {
+
+    public static void main(String[] args) {
         new JerseyClient().demo();
     }
+
     private void demo() {
+        String url = "";
         Client client = Client.create();
         client.setFollowRedirects(true); // in case the service redirects
-        WebResource resource = client.resource(baseUrl);
+        url = baseUrl + "/all/C5H012";
+        WebResource resource = client.resource(url);
         getAllDemo(resource);
         postDemo(resource); // same resource but different verb
-        String url = baseUrl + "?id=32";
+        url = baseUrl + "/VaalRGC&C1H005";
         resource = client.resource(url);
         getOneDemo(resource);
-        deleteDemo(resource); // delete id = 32
     }
+
     private void getAllDemo(WebResource resource) {
 // GET all XML
         String response =
@@ -34,6 +40,7 @@ public class JerseyClient {
                 resource.accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
         report("GET all in JSON:\n", response);
     }
+
     private void getOneDemo(WebResource resource) {
         String response =
                 resource.accept(MediaType.APPLICATION_XML_TYPE).get(String.class);
@@ -42,6 +49,7 @@ public class JerseyClient {
                 resource.accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
         report("GET one in JSON:\n", response);
     }
+
     private void postDemo(WebResource resource) {
         Form form = new Form(); // HTTP body, a simple hash
         form.add("who", "William Butler Yeats");
@@ -52,11 +60,7 @@ public class JerseyClient {
                         .post(String.class, form);
         report("POST:\n", response);
     }
-    private void deleteDemo(WebResource resource) {
-        String response =
-                resource.accept(MediaType.TEXT_PLAIN_TYPE).delete(String.class);
-        report("DELETE:\n", response);
-    }
+
     private void report(String msg, String response) {
         System.out.println("\n" + msg + response);
     }
