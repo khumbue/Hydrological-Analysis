@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="hydrological-analysis-web:war exploded">
+    <output-path>$PROJECT_DIR$/hydrological-analysis-web/target/hydrological-analysis-web-1.1.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="hydrological-analysis-web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.jfree:jfreechart:1.0.19" />
+          <element id="library" level="project" name="Maven: org.jfree:jcommon:1.0.23" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-client:1.8" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.8" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/hydrological-analysis-web/target/hydrological-analysis-web-1.1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="hydrological-analysis-web/web/Web" />
+    </root>
+  </artifact>
+</component>

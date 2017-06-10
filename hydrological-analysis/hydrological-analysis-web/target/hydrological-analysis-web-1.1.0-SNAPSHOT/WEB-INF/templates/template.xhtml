@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <ui:insert name="metadata"/>
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet library="css" name="css/wellnessColoringTemplate.css"/>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <title><ui:insert name="title"/></title>
+            </f:facet>
+            <ui:insert name="script"/>
+            <ui:insert name="style"/>
+            <h:outputStylesheet library="css" name="default.css"/>
+            <style type="text/css">
+                #north .ui-layout-unit-content {
+                    padding-bottom: 0;
+                }
+
+                #west .ui-tree .ui-tree-container {
+                    padding: 0;
+                }
+
+                #west.ui-layout-unit {
+                    padding-bottom: 3px;
+                }
+
+                #content.ui-layout-unit {
+                    padding-right: 3px;
+                    padding-bottom: 3px;
+                }
+
+                .ui-layout-unit {
+                    border-color: black;
+                }
+
+                #logoutPanel.ui-panel .ui-panel-content {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    text-align: right;
+                }
+
+                #contentPanel.ui-panel .ui-panel-footer {
+                    text-align: center;
+                }
+
+                #bannerTitle {
+                    text-align: center;
+                    margin-bottom: 0;
+                }
+
+                .ui-widget-content a {
+                    color: blue;
+                }
+
+                .ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap, .ui-layout-bd, .ui-layout-hd{
+                    border: none;
+                }
+
+                .ui-layout-south .ui-layout-unit-content {
+                    overflow:hidden !important;
+                }
+
+            </style>
+        </h:head>
+        <h:body>
+            <f:facet name="last">
+                <ui:insert name="last"/>
+            </f:facet>
+
+            <p:layout fullPage="true">
+
+                <!-- North -->
+                <p:layoutUnit id="north" position="north" size="95" resizable="true" collapsible="true">
+                    <!-- <p:panel> -->
+                    <table class="fullWidth">
+                        <tbody>
+                            <tr class="fullWidth">
+                                <td id="leftNorthHeaderBlock">
+                                    <ui:insert name="leftLogoInsert"/>
+                                </td>
+                                <td id="middleNorthHeaderBlock">
+                                    <ui:insert name="middleLogoInsert"/>
+                                </td>
+                                <td id="rightNorthHeaderBlock">
+                                    <ui:insert name="rightLogoInsert"/>
+                                </td>
+                            </tr>
+                            <tr class="fullWidth">
+                                <td colspan="3" id="northBottomBlock">
+                                    <ui:insert name="northSolidLineInsert"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </p:layoutUnit>
+
+                <!-- West -->
+                <p:layoutUnit id="west" position="west" size="250"
+                              resizable="true" collapsible="true">
+                    <p:layout id="borderlesslayout" styleClass="borderlesslayout">
+                        <p:layoutUnit position="center"  >
+                            <h:form id="menuForm" prependId="false">
+                                <ui:insert name="menu"/>
+                            </h:form>
+                        </p:layoutUnit>
+                    </p:layout>
+                </p:layoutUnit>
+
+                <!-- South -->
+                <p:layoutUnit id="south" position="south" resizable="false" size="30">
+                    <h:form id="southLeftForm" prependId="false" style="padding-right: 5px; float: left;">
+                        <ui:insert name="southLeftInsert"/>
+
+                    </h:form>
+                    <h:form id="southForm" prependId="false" style="padding-right: 5px; float: right;">
+                        <ui:insert name="southInsert"/>&nbsp;
+                        <h:outputText value="#{loginView.userDescription}-#{request.userPrincipal}"
+                                      styleClass="userNameText"/>&nbsp;
+                        (<p:commandLink actionListener="#{loginView.logout}" action="loggedOut" value="Logout"/>)
+                    </h:form>
+                </p:layoutUnit>
+
+                <!-- Content -->
+                <p:layoutUnit id="content" position="center">
+                    <p:layout>
+                        <p:layoutUnit id="contentNorth" position="north" size="79" style="border: none;" rendered="#{!dontShowMenu}">
+                            <h:form id="contentMenubarForm" prependId="false" enctype="multipart/form-data">
+                                <!--<p:panel id="contentMenubarPanel" rendered="#{request.userPrincipal != null}">-->
+                                <p:panel id="contentMenubarPanel" rendered="true">
+                                    <ui:insert name="contentMenubar"/>
+                                </p:panel>
+                            </h:form>
+                        </p:layoutUnit>
+                        <p:layoutUnit id="contentSouth" position="center" style="border: none;" resizable="true">
+                            <h:form id="contentForm" prependId="false" enctype="multipart/form-data">
+                                <p:panel id="contentPanel">
+                                    <f:facet name="header">
+                                        <ui:insert name="header"/>
+                                    </f:facet>
+                                    <ui:insert name="content"/>
+                                    <f:facet name="footer">
+                                        <ui:insert name="footer"/>
+                                    </f:facet>
+                                </p:panel>
+                            </h:form>
+                        </p:layoutUnit>
+                    </p:layout>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

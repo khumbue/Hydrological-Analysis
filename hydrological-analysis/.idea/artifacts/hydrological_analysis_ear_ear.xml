@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="hydrological-analysis-ear:ear">
+    <output-path>$PROJECT_DIR$/hydrological-analysis-ear/target</output-path>
+    <root id="archive" name="hydrological-analysis-ear-1.1.0-SNAPSHOT.ear">
+      <element id="artifact" artifact-name="hydrological-analysis-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

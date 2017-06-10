@@ -1,0 +1,21 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+        >
+
+    <p:menubar id="queueActions" style="position:absolute; bottom:10px;width:85%;">
+
+      <p:menuitem id="productSearchMenuitemId"
+                    icon="ui-icon-search"
+                    title="#{labels.common.search}"
+                    action="#{genericMenubarView.doSearch()}"/>
+        <p:menuitem id="misMenuitemId"
+                    icon="ui-icon-chart-pie"
+                    title="#{labels.mis.buttonMis}"
+                    process="@this"
+                    action="#{genericMenubarView.showMis()}"
+                    rendered="#{genericMenubarView.renderMis()}"/>
+
+    </p:menubar>
+
+</ui:fragment>

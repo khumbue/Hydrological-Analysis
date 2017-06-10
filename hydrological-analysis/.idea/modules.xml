@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hydrological-analysis.iml" filepath="$PROJECT_DIR$/hydrological-analysis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hydrological-analysis-api/hydrological-analysis-api.iml" filepath="$PROJECT_DIR$/hydrological-analysis-api/hydrological-analysis-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hydrological-analysis-ear/hydrological-analysis-ear.iml" filepath="$PROJECT_DIR$/hydrological-analysis-ear/hydrological-analysis-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hydrological-analysis-ejb/hydrological-analysis-ejb.iml" filepath="$PROJECT_DIR$/hydrological-analysis-ejb/hydrological-analysis-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hydrological-analysis-web/hydrological-analysis-web.iml" filepath="$PROJECT_DIR$/hydrological-analysis-web/hydrological-analysis-web.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="hydrological-analysis-ejb:ejb">
+    <output-path>$PROJECT_DIR$/hydrological-analysis-ejb/target</output-path>
+    <root id="archive" name="hydrological-analysis-ejb-1.1.0-SNAPSHOT.jar">
+      <element id="artifact" artifact-name="hydrological-analysis-ejb:ejb exploded" />
+    </root>
+  </artifact>
+</component>

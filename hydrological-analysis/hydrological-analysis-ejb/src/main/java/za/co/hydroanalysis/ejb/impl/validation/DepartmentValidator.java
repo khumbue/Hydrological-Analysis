@@ -3,7 +3,6 @@ package za.co.jobcreation.ejb.impl.validation;
 import za.co.jobcreation.api.dto.DepartmentDto;
 import za.co.jobcreation.api.dto.ValidationResponse;
 import za.co.jobcreation.ejb.dao.DepartmentDao;
-import za.co.jobcreation.ejb.model.Department;
 
 import javax.inject.Inject;
 
