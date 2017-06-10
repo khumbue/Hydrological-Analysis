@@ -11,7 +11,7 @@ import com.sun.jersey.api.representation.Form;
  * @author khumbu
  */
 public class JerseyClient {
-    private static final String baseUrl = "http://localhost:3000/api/listStation";
+    private static final String baseUrl = "http://localhost:3000/api/stations/all";
 
     public static void main(String[] args) {
         new JerseyClient().demo();
@@ -21,7 +21,7 @@ public class JerseyClient {
         String url = "";
         Client client = Client.create();
         client.setFollowRedirects(true); // in case the service redirects
-        url = baseUrl + "/all/C5H012";
+        url = baseUrl + "/VaalRGC";
         WebResource resource = client.resource(url);
         getAllDemo(resource);
         postDemo(resource); // same resource but different verb
