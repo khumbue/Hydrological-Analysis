@@ -1,0 +1,129 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f1c7d0697ba, pid=6773, tid=0x00007f1c0c101700
+#
+# JRE version: OpenJDK Runtime Environment (8.0_131-b11) (build 1.8.0_131-8u131-b11-0ubuntu1.16.04.2-b11)
+# Java VM: OpenJDK 64-Bit Server VM (25.131-b11 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# v  ~BufferBlob::jni_fast_GetLongField
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f1c1c42f000):  JavaThread "AWT-XAWT" daemon [_thread_in_native, id=6830, stack(0x00007f1c0c001000,0x00007f1c0c102000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x0000000000000000
+
+Registers:
+RAX=0x00007f1c952cd020, RBX=0x00007f1c1c42f1e0, RCX=0x0000000000000000, RDX=0x0000000000000042
+RSP=0x00007f1c0c100818, RBP=0x00007f1c0c100840, RSI=0x0000000000000000, RDI=0x00007f1c1c42f1e0
+R8 =0x0000000000000320, R9 =0x0000000000000000, R10=0x00000000000003fa, R11=0x00007f1c94d34820
+R12=0x00007f1ba8031760, R13=0x0000000000000000, R14=0x00007f1c2da47b00, R15=0x00007f1c1c42f000
+RIP=0x00007f1c7d0697ba, EFLAGS=0x0000000000010246, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f1c0c100818)
+0x00007f1c0c100818:   00007f1c2d824f74 00007f1c0c2e9830
+0x00007f1c0c100828:   00007f1ba8031760 00007f1c0c2e9830
+0x00007f1c0c100838:   00007f1c0c100928 0000000000000000
+0x00007f1c0c100848:   00007f1c5361a3c0 00007f1c0c2e9830
+0x00007f1c0c100858:   00007f1c0c100880 0000000000000000
+0x00007f1c0c100868:   00007f1c53611f93 00007f1c0c2e9830
+0x00007f1c0c100878:   00007f1c2d81ccef 00007f1c0c1008f0
+0x00007f1c0c100888:   00007f1c7d017774 00007f1c0c100970
+0x00007f1c0c100898:   00007f1c7dee83cc 00007f1c0c100970
+0x00007f1c0c1008a8:   00007f1c7d609f64 00007f1c0c1008b0
+0x00007f1c0c1008b8:   0000000000000000 00007f1c0c100928
+0x00007f1c0c1008c8:   00007f1c0c2edec0 0000000000000000
+0x00007f1c0c1008d8:   00007f1c0c2e9830 0000000000000000
+0x00007f1c0c1008e8:   00007f1c0c100910 00007f1c0c100970
+0x00007f1c0c1008f8:   00007f1c7d0077d0 00000000855a58b0
+0x00007f1c0c100908:   00007f1c7d011260 0000000000000000
+0x00007f1c0c100918:   00007f1c7d007b10 00007f1bb0003060
+0x00007f1c0c100928:   000000008536bc48 00007f1c0c100930
+0x00007f1c0c100938:   00007f1c0c2d3284 00007f1c0c1009b8
+0x00007f1c0c100948:   00007f1c0c2dc1e0 0000000000000000
+0x00007f1c0c100958:   00007f1c0c2d33c0 00007f1c0c100910
+0x00007f1c0c100968:   00007f1c0c1009b0 00007f1c0c100a00
+0x00007f1c0c100978:   00007f1c7d007ffd 0000000000000000
+0x00007f1c0c100988:   00000000d754cce8 0000000000000000
+0x00007f1c0c100998:   0000000000000000 0000000000000000
+0x00007f1c0c1009a8:   000000008536bc48 0000000000000000
+0x00007f1c0c1009b8:   000000008536bbf0 00007f1c0c1009c0
+0x00007f1c0c1009c8:   00007f1c0c2d30c5 00007f1c0c100a10
+0x00007f1c0c1009d8:   00007f1c0c2dc1e0 0000000000000000
+0x00007f1c0c1009e8:   00007f1c0c2d30d0 00007f1c0c1009b0
+0x00007f1c0c1009f8:   00007f1c0c100a10 00007f1c0c100a58
+0x00007f1c0c100a08:   00007f1c7d008042 000000008536bbf0 
+
+Instructions: (pc=0x00007f1c7d0697ba)
+0x00007f1c7d06979a:   00 00 00 00 00 00 44 8b 15 cd 03 29 18 4c 8b ce
+0x00007f1c7d0697aa:   41 f6 c2 01 0f 85 2e 00 00 00 4d 33 ca 4d 33 ca
+0x00007f1c7d0697ba:   4d 8b 09 4c 8b da 49 c1 eb 02 4b 8b 04 19 49 bb
+0x00007f1c7d0697ca:   74 9b 2f 95 1c 7f 00 00 4c 33 d8 4c 33 d8 45 3b 
+
+Register to memory mapping:
+
+RAX=0x00007f1c952cd020: <offset 0xef4020> in /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so at 0x00007f1c943d9000
+RBX=0x00007f1c1c42f1e0 is an unknown value
+RCX=0x0000000000000000 is an unknown value
+RDX=0x0000000000000042 is an unknown value
+RSP=0x00007f1c0c100818 is pointing into the stack for thread: 0x00007f1c1c42f000
+RBP=0x00007f1c0c100840 is pointing into the stack for thread: 0x00007f1c1c42f000
+RSI=0x0000000000000000 is an unknown value
+RDI=0x00007f1c1c42f1e0 is an unknown value
+R8 =0x0000000000000320 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x00000000000003fa is an unknown value
+R11=0x00007f1c94d34820: <offset 0x95b820> in /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so at 0x00007f1c943d9000
+R12=0x00007f1ba8031760 is an unknown value
+R13=0x0000000000000000 is an unknown value
+R14=0x00007f1c2da47b00: <offset 0x258b00> in /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/libawt_xawt.so at 0x00007f1c2d7ef000
+R15=0x00007f1c1c42f000 is a thread
+
+
+Stack: [0x00007f1c0c001000,0x00007f1c0c102000],  sp=0x00007f1c0c100818,  free space=1022k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+v  ~BufferBlob::jni_fast_GetLongField
+C  [libX11.so.6+0x643c0]  _XimServerDestroy+0x70
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  sun.awt.X11.XlibWrapper.XFilterEvent(JJ)Z+0
+j  sun.awt.X11.XToolkit.run(Z)V+300
+j  sun.awt.X11.XToolkit.run()V+5
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f1ba806f800 JavaThread "TimerQueue" daemon [_thread_blocked, id=6854, stack(0x00007f1ba70ea000,0x00007f1ba71eb000)]
+  0x00007f1c1c5b1800 JavaThread "Watchdog-Timer-1" daemon [_thread_blocked, id=6836, stack(0x00007f1bc5119000,0x00007f1bc521a000)]
+  0x00007f1c1c546800 JavaThread "Prism Font Disposer" daemon [_thread_blocked, id=6833, stack(0x00007f1bc54ae000,0x00007f1bc55af000)]
+  0x00007f1c1c468000 JavaThread "AWT-EventQueue-0" [_thread_blocked, id=6832, stack(0x00007f1bc5a68000,0x00007f1bc5b69000)]
+  0x00007f1c1c4a7000 JavaThread "AWT-Shutdown" [_thread_blocked, id=6831, stack(0x00007f1bc5b69000,0x00007f1bc5c6a000)]
+=>0x00007f1c1c42f000 JavaThread "AWT-XAWT" daemon [_thread_in_native, id=6830, stack(0x00007f1c0c001000,0x00007f1c0c102000)]
+  0x00007f1c1c41e000 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=6829, stack(0x00007f1c0c102000,0x00007f1c0c203000)]
+  0x00007f1c1c2af800 JavaThread "Disposer" daemon [_thread_blocked, id=6826, stack(0x00007f1c0c603000,0x00007f1c0c704000)]
+  0x00007f1c1c1a4000 JavaThread "pool-2-thread-1" daemon [_thread_blocked, id=6823, stack(0x00007f1c2cba4000,0x00007f1c2cca5000)]
+  0x00007f1c1c1a0000 JavaThread "cluster-ClusterId{value='592ab768d435ff1a75308133', description='null'}-localhost:27017" daemon [_thread_blocked, id=6822, stack(0x00007f1c2cca5000,0x00007f1c2cda6000)]
+  0x00007f1c8c475000 JavaThread "JavaFX-Launcher" [_thread_blocked, id=6817, stack(0x00007f1c2dd19000,0x00007f1c2de1a000)]
+  0x00007f1c8c471000 JavaThread "JavaFX Application Thread" [_thread_in_native, id=6816, stack(0x00007f1c2de1a000,0x00007f1c2df1b000)]
+  0x00007f1c8c46d800 JavaThread "Thread-1" daemon [_thread_blocked, id=6815, stack(0x00007f1c38039000,0x00007f1c3813a000)]
+  0x00007f1c8c398000 JavaThread "QuantumRenderer-0" daemon [_thread_blocked, id=6811, stack(0x00007f1c53afd000,0x00007f1c53bfe000)]
+  0x00007f1c8c2ba000 JavaThread "Service Thread" daemon [_thread_blocked, id=6809, stack(0x00007f1c6c07e000,0x00007f1c6c17f000)]
+  0x00007f1c8c2b7000 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=6808, stack(0x00007f1c6c17f000,0x00007f1c6c280000)]
+  0x00007f1c8c2b4800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=6807, stack(0x00007f1c7c028000,0x00007f1c7c129000)]
+  0x00007f1c8c2b2800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=6806, stack(0x00007f1c7c341000,0x00007f1c7c442000)]
+  0x00007f1c8c2b1000 JavaThread "Monitor Ctrl-Break" daemon [_thread_in_native, id=6805, stack(0x00007f1c7c442000,0x00007f1c7c543000)]
+  0x00007f1c8c173800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=6804, stack(0x00007f1c7c621000,0x00007f1c7c722000)]
+  0x00007f1c8c14c000 JavaThread "Finalizer" daemon [_thread_blocked, id=6797, stack(0x00007f1c7c9fa000,0x00007f1c7cafb000)]
+  0x00007f1c8c147800 
