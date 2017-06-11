@@ -1,2 +1,5 @@
-za\co\hydroanalysis\web\client\JerseyClient.class
+za\co\hydroanalysis\web\client\HydrologicalAnalysisWebClient.class
+za\co\hydroanalysis\web\dto\StationDto.class
 za\co\jobcreation\web\exceptions\ApplicationException.class
+za\co\hydroanalysis\web\client\HydrologicalAnalysisService.class
+za\co\hydroanalysis\web\client\HydrologicalAnalysisWebClientHelper.class

@@ -13,11 +13,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="hydrological-analysis" target="1.7" />
-      <module name="hydrological-analysis-api" target="1.5" />
-      <module name="hydrological-analysis-ear" target="1.5" />
-      <module name="hydrological-analysis-ejb" target="1.7" />
-      <module name="hydrological-analysis-web" target="1.5" />
+      <module name="hydrological-analysis" target="1.8" />
+      <module name="hydrological-analysis-api" target="1.8" />
+      <module name="hydrological-analysis-ear" target="1.8" />
+      <module name="hydrological-analysis-ejb" target="1.8" />
+      <module name="hydrological-analysis-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

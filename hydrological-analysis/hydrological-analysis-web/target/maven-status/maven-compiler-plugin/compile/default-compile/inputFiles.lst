@@ -1,2 +1,5 @@
+D:\Projects\hydrological-analysis\Hydrological-Analysis\hydrological-analysis\hydrological-analysis-web\src\main\java\za\co\hydroanalysis\web\client\HydrologicalAnalysisService.java
 D:\Projects\hydrological-analysis\Hydrological-Analysis\hydrological-analysis\hydrological-analysis-web\src\main\java\za\co\hydroanalysis\web\exceptions\ApplicationException.java
-D:\Projects\hydrological-analysis\Hydrological-Analysis\hydrological-analysis\hydrological-analysis-web\src\main\java\za\co\hydroanalysis\web\client\JerseyClient.java
+D:\Projects\hydrological-analysis\Hydrological-Analysis\hydrological-analysis\hydrological-analysis-web\src\main\java\za\co\hydroanalysis\web\client\HydrologicalAnalysisWebClient.java
+D:\Projects\hydrological-analysis\Hydrological-Analysis\hydrological-analysis\hydrological-analysis-web\src\main\java\za\co\hydroanalysis\web\client\HydrologicalAnalysisWebClientHelper.java
+D:\Projects\hydrological-analysis\Hydrological-Analysis\hydrological-analysis\hydrological-analysis-web\src\main\java\za\co\hydroanalysis\web\dto\StationDto.java

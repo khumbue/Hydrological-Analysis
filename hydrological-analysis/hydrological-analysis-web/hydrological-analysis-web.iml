@@ -36,5 +36,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.spec.javax.ejb:jboss-ejb-api_3.1_spec:1.0.2.Final-redhat-2" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-client:1.8" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-core:1.8" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20170516" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.2" level="project" />
   </component>
 </module>
