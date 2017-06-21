@@ -101,21 +101,27 @@
 
     
     <script type="text/javascript">
-        function showVal(newVal){
+        function updateCalenderChartSlide(yearVar){
             dateString = myData[0].Peak_Date + "";
             numToDate(dateString);
-            plotYear = parseInt(newVal) + parseInt(year)
-            document.getElementById("rangeNumber").innerHTML = plotYear;
+            plotYear = parseInt(yearVar) + parseInt(year)
+            document.getElementById("yearText").value = plotYear;
             google.charts.setOnLoadCallback(drawCalenderChart);
         }
+
+        function updateCalenderChartTextbox(yearVar){
+            plotYear = parseInt(yearVar);
+            google.charts.setOnLoadCallback(drawCalenderChart);
+        }
+
     </script>
 
 </head>
 
 <body>
 
-    <div id = "rangeNumber">0</div>
-    <input type="range" min="0" max="100" step="1" oninput="showVal(this.value)" onchange="showVal(this.value)">
+    Year:<input type="text" id="yearText" value="0" onchange="updateCalenderChartTextbox(this.value)">  <input type="range" min="0" max="100" step="1" oninput="updateCalenderChart(this.value)" onchange="updateCalenderChartSlide(this.value)">
+    
     <br>
     <div id="lineChartContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>
     <br>
