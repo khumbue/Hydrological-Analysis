@@ -16,50 +16,15 @@
    <script src="dataset.js">
        </script>
 
-   <script language="Javascript">       
-      var myData = JSON.parse(jsonData);
+   <script type="text/javascript">       
+        var myData = JSON.parse(jsonData);
+        var year = 0;
+        var plotYear = 1999;
+        var month = 0;
+        var day = 0;
    </script>
-
-    <script language="JavaScript">      
-
-        function drawLineChart() {
-            // Define the chart to be drawn.
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Date');
-            data.addColumn('number', 'Level');  
-
-            for(i = 0; i < 300; i++){
-                data.addRows([
-                [myData[i+20].Peak_Date,  myData[i+20].Peak_Level]
-                ]);
-            }
-
-            // Set chart options
-            var options = {'title' : 'Average Temperatures of Cities',
-                hAxis: {
-                title: 'Date'
-                },
-                vAxis: {
-                title: 'Level'
-                },
-                'width':350,
-                'height':200
-            };
-
-            // Instantiate and draw the chart.
-            var chart = new google.visualization.LineChart(document.getElementById('lineChartContainer'));
-            chart.draw(data, options);
-        }
-
-        google.charts.setOnLoadCallback(drawLineChart);
-    </script>
-
-    <script language="Javascript">
-
-        var year = 0;
-        var plotYear = 1999;
-        var month = 0;
-        var day = 0;
+    
+    <script type="text/javascript">        
 
         function drawCalenderLevelChart() {       
             
@@ -73,7 +38,6 @@
                 dateString = myData[i].Peak_Date +"";
                 numToDate(dateString);
                 if(year.valueOf() == plotYear.valueOf()){
-                    //document.write(year+"/"+month+"/"+day+"<br>");
                     dataTable.addRows([[new Date(year,month,day),myData[i].Peak_Level]]);
                 }
 
@@ -92,79 +56,7 @@
         google.charts.setOnLoadCallback(drawCalenderLevelChart);
     </script>
 
-    <script language="JavaScript">      
-
-        function drawLineChart() {
-            // Define the chart to be drawn.
-            var data = new google.visualization.DataTable();
-            data.addColumn('number', 'Date');
-            data.addColumn('number', 'Level');  
-
-            for(i = 0; i < 300; i++){
-                data.addRows([
-                [myData[i+20].Peak_Date,  myData[i+20].Peak_Level]
-                ]);
-            }
-
-            // Set chart options
-            var options = {'title' : 'Average Temperatures of Cities',
-                hAxis: {
-                title: 'Date'
-                },
-                vAxis: {
-                title: 'Level'
-                },
-                'width':350,
-                'height':200
-            };
-
-            // Instantiate and draw the chart.
-            var chart = new google.visualization.LineChart(document.getElementById('lineChartContainer'));
-            chart.draw(data, options);
-        }
-
-        google.charts.setOnLoadCallback(drawLineChart);
-    </script>
-
-    <script language="Javascript">
-
-        var year = 0;
-        var plotYear = 1999;
-        var month = 0;
-        var day = 0;
-
-        function drawCalenderLevelChart() {       
-            
-            var dateString;
-            var dataTable = new google.visualization.DataTable();
-            dataTable.addColumn({ type: 'date', id: 'Date' });
-            dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
-
-            for(i = 0 ; i < myData.length; i++){
-
-                dateString = myData[i].Peak_Date +"";
-                numToDate(dateString);
-                if(year.valueOf() == plotYear.valueOf()){
-                    //document.write(year+"/"+month+"/"+day+"<br>");
-                    dataTable.addRows([[new Date(year,month,day),myData[i].Peak_Level]]);
-                }
-
-            }
-
-            var chart = new google.visualization.Calendar(document.getElementById('calenderChartLevelContainer'));
-
-            var options = {
-                title: "Peak Level",
-                height: 350000000,
-            };
-
-            chart.draw(dataTable, options);
-        }
-
-        google.charts.setOnLoadCallback(drawCalenderLevelChart);
-    </script>
-
-    <script language="Javascript">
+    <script type="text/javascript">
 
         function drawCalenderFlowChart() {       
             
@@ -206,19 +98,28 @@
 
     
     <script type="text/javascript">
-        function updateCalenderChartSlide(yearVar){
+
+        // function updateCalenderChartBySlide(){
+        //     google.charts.setOnLoadCallback(drawCalenderLevelChart);
+        //     google.charts.setOnLoadCallback(drawCalenderFlowChart);
+        // }
+        function updateTextField(yearVar){
             dateString = myData[0].Peak_Date + "";
             numToDate(dateString);
             plotYear = parseInt(yearVar) + parseInt(year)
             document.getElementById("yearText").value = plotYear;
+
             google.charts.setOnLoadCallback(drawCalenderLevelChart);
             google.charts.setOnLoadCallback(drawCalenderFlowChart);
+            google.charts.setOnLoadCallback(drawLineChart);
         }
 
-        function updateCalenderChartTextbox(yearVar){
+        function updateCalenderChartByTextField(yearVar){
             plotYear = parseInt(yearVar);
+
             google.charts.setOnLoadCallback(drawCalenderLevelChart);   
-            google.charts.setOnLoadCallback(drawCalenderFlowChart);         
+            google.charts.setOnLoadCallback(drawCalenderFlowChart);    
+            google.charts.setOnLoadCallback(drawLineChart);     
         }
 
     </script>
@@ -227,13 +128,9 @@
 
 <body>
 
-    Year:<input type="text" id="yearText" value="0" onchange="updateCalenderChartTextbox(this.value)">  <input type="range" min="0" max="100" step="1" oninput="updateCalenderChart(this.value)" onchange="updateCalenderChartSlide(this.value)">
-    
+    Year:<input type="text" id="yearText" value="0" onchange="updateCalenderChartByTextbox(this.value)">  <input type="range" min="0" max="100" step="1" oninput="updateTextField(this.value)" onchange="updateCalenderChartBySlide(this.value)">
     <br>
-    <div id="lineChartContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>
-    <br>
-    <br>
-    <br>
+    <br>   
     <div id="calenderChartLevelContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>
     <br>
     <br>
