@@ -13,11 +13,10 @@
      google.charts.load("current", {packages:["calendar"]});
    </script>
 
-   <script src="dataset.js">
-       </script>
+   <script src="dataset.js"></script>
 
    <script type="text/javascript">       
-        var myData = JSON.parse(jsonData);
+        var myData = JSON.parse(c5h012);
         var year = 0;
         var plotYear = 1999;
         var month = 0;
@@ -87,6 +86,7 @@
 
         google.charts.setOnLoadCallback(drawCalenderFlowChart);
     </script>
+    
 
     <script type="text/javascript">
         function numToDate(dateString){
@@ -99,10 +99,6 @@
     
     <script type="text/javascript">
 
-        // function updateCalenderChartBySlide(){
-        //     google.charts.setOnLoadCallback(drawCalenderLevelChart);
-        //     google.charts.setOnLoadCallback(drawCalenderFlowChart);
-        // }
         function updateTextField(yearVar){
             dateString = myData[0].Peak_Date + "";
             numToDate(dateString);
@@ -111,7 +107,6 @@
 
             google.charts.setOnLoadCallback(drawCalenderLevelChart);
             google.charts.setOnLoadCallback(drawCalenderFlowChart);
-            google.charts.setOnLoadCallback(drawLineChart);
         }
 
         function updateCalenderChartByTextField(yearVar){
@@ -119,7 +114,6 @@
 
             google.charts.setOnLoadCallback(drawCalenderLevelChart);   
             google.charts.setOnLoadCallback(drawCalenderFlowChart);    
-            google.charts.setOnLoadCallback(drawLineChart);     
         }
 
     </script>
@@ -128,16 +122,14 @@
 
 <body>
 
-    Year:<input type="text" id="yearText" value="0" onchange="updateCalenderChartByTextbox(this.value)">  <input type="range" min="0" max="100" step="1" oninput="updateTextField(this.value)" onchange="updateCalenderChartBySlide(this.value)">
+    Year:<input type="text" id="yearText" value="0" onchange="updateCalenderChartByTextField(this.value)">  <input type="range" min="0" max="100" step="1" oninput="updateTextField(this.value)" ">
     <br>
     <br>   
     <div id="calenderChartLevelContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>
     <br>
     <br>
     <br>
-    <div id="calenderChartFlowContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>
-
-    
+    <div id="calenderChartFlowContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>    
 
 </body>
 </html>
