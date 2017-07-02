@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+
+	<script>
+		var app = angular.module('app', ['ngRoute']);
+
+		app.controller('HomeController', function($http){
+			var vm = this;
+
+			vm.stations = [];
+
+			vm.detailedStation;
+
+			vm.showDetails = function(station){
+				vm.detailedStation = station;
+				vm.detailed = true;
+			}
+
+			vm.getStations = function(){
+				$http.get('/api/stations').then(function(response){
+					vm.stations = response.data;
+				});
+			}
+			vm.getStations();
+
+			vm.updateStation = function(station){
+				if(station){
+					$http.put('/api/stations', station).then(function(response){
+						console.log('updated station');
+						vm.getStations();
+					})
+				}
+			}
+
+			vm.removeStation = function(station){
+				console.log(station);
+				if(station){
+					$http.delete('/api/stations/' + station._id).then(function(response){
+						vm.getStations();
+					});
+				}
+			}
+
+
+			vm.addStation = function(station){
+				if(station && station.Station_No && station.Place && station.Longitude && station.Latitude && station.Catchment_Area && station.Data_Available){
+					console.log('about to create station');
+
+					$http.post('/api/stations', station).then(function(response){
+						vm.getStations();
+						vm.station = '';
+						vm.addStation = false;
+					});
+
+				}
+				else {
+					console.log('You have not supplied enough details..');
+				}
+			}
+
+
+			return true;
+		});
+
+		app.config(function($routeProvider) {
+
+			$routeProvider.when('/', {
+				controller: 'HomeController',
+				controllerAs: 'vm',
+				templateUrl: './home.html'
+			});
+			$routeProvider.otherwise('/');
+
+		});
+
+	</script>
+	<meta charset="UTF-8">
+	<title>Hydrological Analysis - Dash Board</title>
+</head>
+<body>
+<div ng-include="'dashBoard.html'"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div ng-view></div>
+			</div>
+		</div>
+	</div>
+</body>	
+</html>

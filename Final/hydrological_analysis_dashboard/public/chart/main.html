@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<head>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="c1h001.js"></script>
+    <script src="c1h002.js"></script>
+    <script src="c1h008.js"></script>
+    <script src="c1h020.js"></script>
+    <script src="c3h003.js"></script>
+    <script src="c5h005.js"></script>
+    <script src="c5h007.js"></script>
+    <script src="c5h012.js"></script>
+    <script src="c5h014.js"></script>
+    <script src="c6h001.js"></script>
+    <script src="levelCalendarChart.js"></script>
+    <script src="flowCalendarChart.js"></script>
+    <script src="chartVariable.js"></script>
+    <script src="numToDate.js"></script>
+    <script src="updateChartsByTextfieldAndPlot.js"></script>
+    <script src="updateTextfieldAndPlot.js"></script>
+    <script src="flowAndLevelBubbleChart.js"></script>
+    <script src="incrYear.js"></script>
+    <script src="decrYear.js"></script>
+    <script src="updateCharts.js"></script>
+         
+</head>
+
+<body>
+   <div>
+        <a href="http://127.0.0.1:3000/"> Back </a>
+    </div>
+<div>
+    <h1>Detailed Station View</h1>
+</div>
+    Select a station: <select name="selectStation">
+    <option value="C1H001">C1H001</option>
+    <option value="C1H002">C1H002</option>
+    <option value="C1H003">C1H003</option>
+    <option value="C1H004">C1H004</option>
+  </select>
+   <br>
+    <br>
+    Year:<input type="text" id="yearText" value="0" onchange="updateChartsByTextfield(this.value)"> 
+    <br>
+    <br>
+    <input type="range" min="0" max="100" step="1" oninput="updateTextfield(this.value)">
+    <br>
+    <br>
+    <button onclick="decrYear()">-</button><button onclick="incrYear()">+</button>
+    <br>
+    <br>   
+    <div id="calendarChartLevelContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>
+    <br>
+    <br>
+    <br>
+    <div id="calendarChartFlowContainer" style="width: 2000px;height: 140px; margin: 0 auto"></div>   
+    <br>
+    <br>
+    <div id="bubbleChartContainer" style="width: 900px; height: 500px;"></div>    
+
+</body>
+</html>
