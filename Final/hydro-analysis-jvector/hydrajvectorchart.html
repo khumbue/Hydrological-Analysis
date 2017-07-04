@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Peak Flows and Peak Levels</title>
+    <link rel="stylesheet" href="jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+    <script src="jquery-3.2.1.js"></script>
+    <script src="jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="jquery-jvectormap-za-merc.js"></script>
+    <script src="gdp-data.js"></script>
+    <script src="chartVariable.js"></script>
+    <script src="numToDate.js"></script>
+    <script src="vaalrgc.js"></script>
+    <script src="stationLevelData.js"></script>
+    <script src="../hydrological-analysis/Prototype/Prototype/hydrological_analysis_graph/server.js"></script>
+</head>
+
+<body>
+
+Year:<input type="text" id="yearText" value="1900-01" onchange="updateChartsByTextfield(this.value)">
+<br>
+<br>
+<input type="range" min="1" max="1404" step="1" value="1" oninput="updateTextfield(this.value)">
+<br>
+<br>
+<button onclick="decreaseMonth()">-</button>
+<button onclick="increaseMonth()">+</button>
+<br>
+<br>
+<br>
+<br>
+<div id="za-map" style="width: 1000px; height: 800px"></div>
+
+<script>
+    var markersData = [];
+    var peakFlowOrLevelData = [];
+    var stations = JSON.parse(stationLevelData);
+    //    var stations = [];
+    var stationData = [];
+    var map;
+
+    $(function () {
+        map = new jvm.Map({
+            container: $('#za-map'),
+            map: 'za_merc',
+            regionsSelectable: true,
+            markersSelectable: true,
+            //markers: markers,
+            markerStyle: {
+                initial: {
+                    fill: '#4DAC26'
+                },
+                selected: {
+                    fill: '#CA0020'
+                }
+            },
+            regionStyle: {
+                initial: {
+                    fill: '#B8E186'
+                },
+                selected: {
+                    fill: '#F4A582'
+                }
+            },
+            series: {
+                markers: [{
+                    attribute: 'r',
+                    scale: [5, 15],
+                    values: [],
+                }]
+            },
+            onRegionSelected: function () {
+                if (window.localStorage) {
+                    window.localStorage.setItem(
+                        'jvectormap-selected-regions',
+                        JSON.stringify(map.getSelectedRegions())
+                    );
+                }
+            },
+            onMarkerSelected: function () {
+                if (window.localStorage) {
+                    window.localStorage.setItem(
+                        'jvectormap-selected-markers',
+                        JSON.stringify(map.getSelectedMarkers())
+                    );
+                }
+            }
+        });
+
+        map.setSelectedRegions(JSON.parse(window.localStorage.getItem('jvectormap-selected-regions') || '[]'));
+        map.setSelectedMarkers(JSON.parse(window.localStorage.getItem('jvectormap-selected-markers') || '[]'));
+    });
+
+    function getStationlevels(plotYearMonth) {
+//        callWebService(plotYearMonth);
+        stationData = loadStationData();
+    }
+
+    function callWebService(plotYearMonth) {
+        var xhttp = new XMLHttpRequest();
+        var restUrl = "http://127.0.0.1:3300/" + plotYearMonth;
+        xhttp.open("GET", restUrl, false);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        stations = JSON.parse(xhttp.responseText);
+    }
+
+    function loadStationData() {
+        var stationsData = [];
+        for (var i = 0; i < stations.length; i++) {
+            var flowOrLevelDetail;
+            var markerName;
+            markerName = 'Station Number: ' + stations[i].Station_No + '  Place: ' + stations[i].Place + '  Peak Level: ' + stations[i].Peak_Level +
+                '  Peak Flow: ' + stations[i].Peak_Flow;
+            stationsData.push({latLng: [stations[i].Latitude, stations[i].Longitude], name: markerName});
+            peakFlowOrLevelData.push(stations[i].Peak_Flow);
+        }
+        return stationsData;
+    }
+
+    function updateChartsByTextfield(yearMonth) {
+        plotYearMonth = new Date(yearMonth);
+        convertDateToStringAndDisplay();
+        updateChart();
+    }
+
+    function updateTextfield(monthSteps) {
+        plotYearMonth = new Date("1900-01");
+        plotYearMonth = new Date(plotYearMonth.setMonth(plotYearMonth.getMonth() + monthSteps));
+        convertDateToStringAndDisplay();
+        updateChart();
+    }
+
+    // Increment year and plots
+    function increaseMonth() {
+        currentYearMonth = plotYearMonth;
+        plotYearMonth = new Date(plotYearMonth.setMonth(currentYearMonth.getMonth() + 1));
+        convertDateToStringAndDisplay();
+        updateChart();
+    }
+
+    function decreaseMonth() {
+        currentYearMonth = plotYearMonth;
+        plotYearMonth = new Date(plotYearMonth.setMonth(currentYearMonth.getMonth() - 1));
+        convertDateToStringAndDisplay();
+        updateChart();
+    }
+
+    function convertDateToStringAndDisplay() {
+        yearMonthString = plotYearMonth.getFullYear() + '-' + '' + pad(plotYearMonth.getMonth() + 1);
+        document.getElementById("yearText").value = yearMonthString;
+    }
+
+    // dateString format (e.g yearmonthday 19870822)
+    function numToDate(dateString) {
+        year = dateString.slice(0, 4);
+        month = dateString.slice(4, 6);
+        day = dateString.slice(6, 8);
+    }
+
+    function updateChart() {
+        getStationlevels(plotYearMonth);
+        map.removeAllMarkers();
+        map.addMarkers(stationData, []);
+        map.series.markers[0].setValues(peakFlowOrLevelData);
+    }
+
+    function pad(n) {
+        return (n < 10) ? ("0" + n) : n;
+    }
+
+</script>
+</body>
+</html>
